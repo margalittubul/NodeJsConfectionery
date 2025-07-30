@@ -4,11 +4,11 @@ dotenv.config();
 import mongoose from 'mongoose';
 
 const uri = process.env.DB_URI;
-console.log(uri); // הדפס את ה-URI כדי לוודא שהוא נטען נכון
+console.log(uri); 
 
 const connectDB = async () => {
     try {
-        await mongoose.connect(uri); // אין צורך באפשרויות נוספות
+        await mongoose.connect(uri);
     } catch (error) {
         console.error('Database connection failed:', error);
     }

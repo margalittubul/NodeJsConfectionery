@@ -28,7 +28,7 @@ const CustomerController = {
         if (!email) {
             return res.status(400).json({ message: "יש להזין כתובת אימייל" });
         }
-
+        //מסתיר את הסיסמא
         const customer = await Customer.findOne({ email }).select("-password");
         if (!customer) {
             return res.status(404).json({ message: "הלקוח לא נמצא" });
@@ -103,20 +103,6 @@ const CustomerController = {
             res.status(400).json({ message: e.message });
         }
     },
-    //קבלת שם משתמש
-    // getUserInfo : async (req, res) => {
-
-    //     try {
-    //         const user = await Customer.findById(req.user.id);
-            
-    //         if (!user) {
-    //             return res.status(404).json({ message: 'User not found' });
-    //         }
-    //         res.json({ name: user.name, role: user.role });
-    //     } catch (error) {
-    //         res.status(500).json({ message: error.message });
-    //     }
-    // },
 };
 
 export default CustomerController;

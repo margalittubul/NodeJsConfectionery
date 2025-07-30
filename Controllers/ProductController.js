@@ -28,7 +28,8 @@ getList: async (req, res) => {
     if (isNaN(productId)) {
       return res.status(400).json({ message: "Invalid product ID" });
     }
-
+    //מונוגס מאפשר קשר בין אוספים
+    //populate מאפשר להביא את המידע של הקטגוריה
     const foundProduct = await product.findOne({ id: productId }).populate("categoryId");
 
     if (!foundProduct) {

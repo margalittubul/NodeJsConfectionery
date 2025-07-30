@@ -24,7 +24,6 @@ const BuyingController = {
     //הוספת מוצר
     addProduct : async (req, res) => {
     try {
-        console.log("req:",req.body)
         const customerId = req.user.id; 
         const { productId, quantity } = req.body;
 
@@ -96,14 +95,11 @@ const BuyingController = {
     calculateTotalPrice: async (req, res) => {
         try {
             const  customerId  = req.user.id;
-            console.log(customerId);
             const buyingCart = await Buying.findOne({ customerId }); 
-            console.log(buyingCart);
             if (!buyingCart) return res.status(404).json({ message: "Cart not found" }); 
             let totalPrice = 0;
             for (const item of buyingCart.products) {
                const product = await Product.findOne({ id: item.productId });
-                console.log("Product:", product);
                 if (!product || typeof product.price !== 'number') {
                     console.warn('Invalid product or missing price:', item.productId);
                     continue;
@@ -118,7 +114,7 @@ const BuyingController = {
     //הוספת סל
     add: async (req, res) => {
         try {
-             const  customerId  = req.user.id; 
+            const  customerId  = req.user.id; 
             const {products } = req.body;
             const newCart = await Buying.create({ customerId, products });
             res.status(201).json(newCart);

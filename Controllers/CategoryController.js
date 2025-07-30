@@ -26,7 +26,7 @@ const CategoryController = {
             const updatedCategory = await category.findByIdAndUpdate(
                 req.params.id,
                 req.body,
-                { new: true }
+                { new: true }//מחזיר את הקטגוריה המעודכנת
             );
             if (!updatedCategory) return res.status(404).json({ message: "Category not found" });
             res.json(updatedCategory);
